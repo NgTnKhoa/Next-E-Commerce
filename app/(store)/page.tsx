@@ -29,12 +29,6 @@ const Home = () => {
   const categories: Category[] = MockData.featuredCategories;
   const products: Product[] = MockData.featuredProducts;
 
-  useEffect(() => {
-    MockData.products.forEach((product) => {
-    console.log(`${product.name}`);
-  });
-  }, []);
-
   return (
     <div>
       <Slider images={banners.map((obj) => obj.image)} />

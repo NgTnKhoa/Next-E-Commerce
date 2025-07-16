@@ -1,8 +1,8 @@
-import { LoginForm } from "@/components/login-form";
-import { GalleryVerticalEnd } from "lucide-react";
-import React from "react";
+import { SignupForm } from '@/components/signup-form'
+import { GalleryVerticalEnd } from 'lucide-react'
+import React from 'react'
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6">
@@ -12,10 +12,10 @@ const Login = () => {
           </div>
           NgTnKhoa
         </a>
-        <LoginForm />
+        <SignupForm />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Register

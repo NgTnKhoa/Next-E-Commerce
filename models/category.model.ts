@@ -1,6 +1,10 @@
 export interface Category {
     id: number
     name: string;
-    createdAt: Date;
-    updatedAt: Date;
+    slug: string;
+    description: string;
+    image: string;
+    featured: boolean;
+    createdDate: Date;
+    updatedDate: Date;
 }

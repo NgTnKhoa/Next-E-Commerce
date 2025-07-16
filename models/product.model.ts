@@ -1,16 +1,19 @@
 import { Category } from "./category.model";
 
 export interface Product {
-    id: number
-    name: string;
-    description: string;
-    price: number;
-    discount: number;
-    slug: string;
-    brand: string;
-    categories: Category[];
-    images: string[];
-    isAvailable: boolean;
-    createdAt: Date;
-    updatedAt: Date;
+  id: number;
+  categoryNames: string[];
+  name: string;
+  slug: string;
+  description: string;
+  images: string[];
+  price: number;
+  discount: number;
+  brand: string;
+  status: string;
+  featured: boolean;
+  colors: string[];
+  rating: number;
+  createdDate: Date;
+  updatedDate: Date;
 }

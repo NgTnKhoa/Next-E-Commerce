@@ -1,0 +1,16 @@
+import { Category } from "@/models/category.model";
+import { CategoryCard } from "./CategoryCard";
+
+interface CategoryGridProps {
+  categories: Category[];
+}
+
+export const CategoryGrid = ({ categories }: CategoryGridProps) => {
+  return (
+    <div className="mb-4 gap-3 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      {categories.map((category) => (
+        <CategoryCard key={category.id} category={category} />
+      ))}
+    </div>
+  );
+};

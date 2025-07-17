@@ -15,6 +15,7 @@ const Header = () => {
           <CartNav />
           <ThemeToggle />
           {/* {authenticated ? <UserNav /> : <LoginDialog />} */}
+          <LoginDialog />
         </div>
       </div>
     </header>

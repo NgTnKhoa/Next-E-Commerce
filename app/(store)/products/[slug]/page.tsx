@@ -203,8 +203,7 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
 
   return (
     <div>
-      {/* Breadcrumb - Full Width at Top */}
-      <div className="mb-6">
+      <div className="mb-4">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -233,9 +232,7 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Product Images - Takes 1/2 of the width */}
         <div className="space-y-3">
-          {/* Main Image Carousel */}
           <div className="aspect-[4/3] relative overflow-hidden rounded-lg border bg-gray-50">
             <Carousel className="absolute inset-0" setApi={setCarouselApi}>
               <CarouselContent className="h-full">
@@ -257,7 +254,6 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
             </Carousel>
           </div>
 
-          {/* Thumbnail Images */}
           <div className="grid grid-cols-5 gap-2">
             {product.images.slice(0, 5).map((image, index) => (
               <div
@@ -281,9 +277,7 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
           </div>
         </div>
 
-        {/* Product Information - Takes 1/2 of the width */}
         <div className="space-y-3">
-          {/* Product Title and Brand */}
           <div>
             <h1 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
               {product.name}
@@ -306,7 +300,6 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
             </div>
           </div>
 
-          {/* Rating */}
           <div className="flex items-center gap-2 pb-2">
             <div className="flex items-center">
               {renderStars(product.rating)}
@@ -316,7 +309,6 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
             </span>
           </div>
 
-          {/* Price */}
           <div className="space-y-1 pb-3 border-b">
             <div className="flex items-center gap-3 flex-wrap">
               <span className="text-xl lg:text-2xl font-bold text-primary">
@@ -340,7 +332,6 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
             )}
           </div>
 
-          {/* Colors */}
           {product.colors.length > 0 && (
             <div className="py-2">
               <h3 className="font-semibold mb-2 text-sm">Available Colors</h3>
@@ -358,7 +349,6 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
             </div>
           )}
 
-          {/* Quantity Selector */}
           <div className="py-2">
             <h3 className="font-semibold mb-2 text-sm">Quantity</h3>
             <div className="flex items-center gap-2">
@@ -371,13 +361,23 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
               >
                 <Minus className="h-3 w-3" />
               </Button>
-              <span className="w-12 text-center font-medium text-sm">
-                {quantity}
-              </span>
+              <Input
+                type="number"
+                min="1"
+                max={product.stock}
+                value={quantity}
+                onChange={(e) => {
+                  const newQuantity = parseInt(e.target.value) || 1;
+                  setQuantity(Math.max(1, Math.min(newQuantity, product.stock)));
+                }}
+                disabled={product.status !== "AVAILABLE"}
+                className="w-12 h-8 text-center text-sm [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
+              />
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => handleQuantityChange(1)}
+                disabled={quantity >= product.stock}
                 className="h-8 w-8"
               >
                 <Plus className="h-3 w-3" />

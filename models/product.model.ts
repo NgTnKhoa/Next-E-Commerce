@@ -1,5 +1,3 @@
-import { Category } from "./category.model";
-
 export interface Product {
   id: number;
   categoryNames: string[];
@@ -10,6 +8,7 @@ export interface Product {
   price: number;
   discount: number;
   brand: string;
+  stock: number;
   status: string;
   featured: boolean;
   colors: string[];

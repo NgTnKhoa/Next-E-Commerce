@@ -407,7 +407,7 @@ const Cart = () => {
                             )
                           }
                           disabled={!item.inStock}
-                          className="w-10 h-8 text-center text-sm [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
+                          className="w-12 h-8 text-center text-sm [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
                         />
                         <Button
                           variant="outline"

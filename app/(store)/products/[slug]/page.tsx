@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, use, useRef, useEffect } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import {
   Breadcrumb,
@@ -43,12 +44,13 @@ import {
 } from "lucide-react";
 
 interface ProductDetailsProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 const ProductDetails = ({ params }: ProductDetailsProps) => {
+  const resolvedParams = use(params);
   const [quantity, setQuantity] = useState(1);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [userReview, setUserReview] = useState({
@@ -57,10 +59,12 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
     name: "",
   });
   const [userReviews, setUserReviews] = useState<any[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
   // Find the product by slug
   const product = MockData.products.find(
-    (p: Product) => p.slug === params.slug
+    (p: Product) => p.slug === resolvedParams.slug
   );
 
   if (!product) {
@@ -107,6 +111,25 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
   const handleStarClick = (rating: number) => {
     setUserReview((prev) => ({ ...prev, rating }));
   };
+
+  // Handle thumbnail click
+  const handleThumbnailClick = (index: number) => {
+    if (carouselApi) {
+      carouselApi.scrollTo(index);
+    }
+    setCurrentImageIndex(index);
+  };
+
+  // Track carousel changes
+  useEffect(() => {
+    if (!carouselApi) {
+      return;
+    }
+
+    carouselApi.on("select", () => {
+      setCurrentImageIndex(carouselApi.selectedScrollSnap());
+    });
+  }, [carouselApi]);
 
   // Mock reviews data - combine with user reviews
   const allReviews = [
@@ -212,40 +235,46 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Product Images - Takes 1/2 of the width */}
         <div className="space-y-3">
+          {/* Main Image Carousel */}
           <div className="aspect-[4/3] relative overflow-hidden rounded-lg border bg-gray-50">
-            <Carousel className="w-full h-full">
-              <CarouselContent>
+            <Carousel className="absolute inset-0" setApi={setCarouselApi}>
+              <CarouselContent className="h-full">
                 {product.images.map((image, index) => (
-                  <CarouselItem key={index}>
-                    <div className="relative w-full h-full">
+                  <CarouselItem key={index} className="h-full">
+                    <div className="relative w-full aspect-[4/3] bg-white">
                       <Image
                         src={image}
-                        alt={`${product.name} - Image ${index + 1}`}
+                        alt={`Image ${index + 1}`}
                         fill
                         className="object-contain"
-                        priority={index === 0}
                       />
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-2" />
-              <CarouselNext className="right-2" />
+              <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2" />
+              <CarouselNext className="right-2 top-1/2 -translate-y-1/2" />
             </Carousel>
           </div>
 
           {/* Thumbnail Images */}
-          <div className="grid grid-cols-5 gap-1">
+          <div className="grid grid-cols-5 gap-2">
             {product.images.slice(0, 5).map((image, index) => (
               <div
                 key={index}
-                className="aspect-square relative overflow-hidden rounded border cursor-pointer hover:border-primary transition-colors"
+                onClick={() => handleThumbnailClick(index)}
+                className={`aspect-square relative overflow-hidden rounded-lg border cursor-pointer transition-colors bg-white p-1 ${
+                  currentImageIndex === index
+                    ? "border-primary ring-2 ring-primary/20"
+                    : "hover:border-primary"
+                }`}
               >
                 <Image
                   src={image}
                   alt={`${product.name} - Thumbnail ${index + 1}`}
                   fill
                   className="object-contain"
+                  sizes="80px"
                 />
               </div>
             ))}
@@ -342,7 +371,9 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
               >
                 <Minus className="h-3 w-3" />
               </Button>
-              <span className="w-12 text-center font-medium text-sm">{quantity}</span>
+              <span className="w-12 text-center font-medium text-sm">
+                {quantity}
+              </span>
               <Button
                 variant="outline"
                 size="sm"
@@ -388,29 +419,39 @@ const ProductDetails = ({ params }: ProductDetailsProps) => {
           </div>
 
           {/* Shipping & Return Information */}
-          <Card className="mt-4">
-            <CardContent className="p-3">
+          <Card className="mt-4 py-4">
+            <CardContent>
               <h3 className="font-semibold mb-2 text-sm">Shipping & Returns</h3>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <Truck className="h-3 w-3 text-primary flex-shrink-0" />
                   <div>
-                    <p className="text-xs font-medium">Free shipping on orders over $50</p>
-                    <p className="text-xs text-muted-foreground">Standard delivery: 3-5 business days</p>
+                    <p className="text-xs font-medium">
+                      Free shipping on orders over $50
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Standard delivery: 3-5 business days
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="h-3 w-3 text-primary flex-shrink-0" />
                   <div>
-                    <p className="text-xs font-medium">1 year warranty included</p>
-                    <p className="text-xs text-muted-foreground">Manufacturer warranty covers defects</p>
+                    <p className="text-xs font-medium">
+                      1 year warranty included
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Manufacturer warranty covers defects
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <RotateCcw className="h-3 w-3 text-primary flex-shrink-0" />
                   <div>
                     <p className="text-xs font-medium">30-day return policy</p>
-                    <p className="text-xs text-muted-foreground">Free returns on all orders</p>
+                    <p className="text-xs text-muted-foreground">
+                      Free returns on all orders
+                    </p>
                   </div>
                 </div>
               </div>

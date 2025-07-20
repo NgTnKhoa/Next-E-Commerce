@@ -235,32 +235,28 @@ const Cart = () => {
   }
 
   return (
-    <div className="py-8">
+    <div>
       {/* Breadcrumb */}
-      <div className="mb-6">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">
-                <Home className="h-4 w-4 mr-1" />
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Shopping Cart</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+      <Breadcrumb className="mb-2">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <Link href="/">
+              <Home className="h-4 w-4 mr-1" />
+            </Link>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Shopping Cart</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
       {/* Page Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Shopping Cart
-            </h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold mb-2">Shopping Cart</h1>
+            <p className="text-gray-500">
               {cartItems.length} item{cartItems.length !== 1 ? "s" : ""} in your
               cart
             </p>

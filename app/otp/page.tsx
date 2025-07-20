@@ -1,9 +1,9 @@
-import { LoginForm } from "@/components/login-form";
+import { OTPForm } from "@/components/otp-form";
 import { GalleryVerticalEnd } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-const Login = () => {
+const OTP = () => {
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6">
@@ -13,10 +13,10 @@ const Login = () => {
           </div>
           NgTnKhoa
         </Link>
-        <LoginForm />
+        <OTPForm />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default OTP;

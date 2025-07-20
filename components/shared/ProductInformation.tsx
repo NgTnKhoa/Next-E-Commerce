@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
@@ -21,7 +23,6 @@ import {
   Plus,
 } from "lucide-react";
 import { Product } from "@/models/product.model";
-import MockData from "@/data/mockData";
 import { notFound } from "next/navigation";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -36,10 +37,6 @@ const ProductInformation = ({ product }: ProductInformationProps) => {
   const [quantity, setQuantity] = useState(1);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  if (!product) {
-    notFound();
-  }
 
   const discountedPrice =
     product.price - (product.price * product.discount) / 100;

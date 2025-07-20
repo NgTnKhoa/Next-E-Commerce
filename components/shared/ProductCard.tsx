@@ -29,7 +29,7 @@ export const ProductCard = ({ product, isFeatured }: ProductCardProps) => {
             <div className="absolute bottom-2 left-4 flex flex-wrap gap-1 z-10">
               <Badge
                 variant="destructive"
-                className="text-xs px-1  shadow-sm rounded-full"
+                className="text-xs px-1 shadow-sm rounded-full"
               >
                 -{product.discount}%
               </Badge>

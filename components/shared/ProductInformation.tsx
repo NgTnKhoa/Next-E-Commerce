@@ -23,7 +23,6 @@ import {
   Plus,
 } from "lucide-react";
 import { Product } from "@/models/product.model";
-import { notFound } from "next/navigation";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -65,12 +64,12 @@ const ProductInformation = ({ product }: ProductInformationProps) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="space-y-3">
-        <div className="aspect-[4/3] relative overflow-hidden rounded-lg border bg-gray-50">
+        <div className="aspect-[4/3] relative overflow-hidden rounded-lg border">
           <Carousel className="absolute inset-0" setApi={setCarouselApi}>
             <CarouselContent className="h-full">
               {product.images.map((image, index) => (
                 <CarouselItem key={index} className="h-full">
-                  <div className="relative w-full aspect-[4/3] bg-white">
+                  <div className="relative w-full aspect-[4/3]">
                     <Image
                       src={image}
                       alt={`Image ${index + 1}`}

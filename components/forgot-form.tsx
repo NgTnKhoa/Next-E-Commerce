@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowLeft, GalleryVerticalEnd } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -12,11 +14,21 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function ForgotForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [email, setEmail] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/otp");
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -30,7 +42,7 @@ export function ForgotForm({
           <CardTitle className="text-xl">Forgot Password</CardTitle>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="grid gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
@@ -39,9 +51,11 @@ export function ForgotForm({
                   type="email"
                   placeholder="m@example.com"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Next
               </Button>
             </div>

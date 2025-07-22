@@ -14,6 +14,8 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export function ResetPasswordForm({
   className,
@@ -28,16 +30,20 @@ export function ResetPasswordForm({
       toast.error("Passwords do not match.");
       return;
     }
-    // Handle password reset logic here
     toast.success("Password has been reset successfully.");
     router.push("/login");
   };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
-        <CardHeader className="text-center">
+        <CardHeader className="relative flex items-center justify-center h-12">
+          <Link
+            href="/otp"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
           <CardTitle className="text-xl">Reset Password</CardTitle>
-          <CardDescription>Enter your new password below</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
@@ -62,7 +68,7 @@ export function ResetPasswordForm({
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Continue
               </Button>
             </div>

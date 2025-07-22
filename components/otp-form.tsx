@@ -10,8 +10,18 @@ import {
 } from "@/components/ui/input-otp";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function OTPForm({ className, ...props }: React.ComponentProps<"div">) {
+  const [otp, setOtp] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/reset");
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -25,9 +35,15 @@ export function OTPForm({ className, ...props }: React.ComponentProps<"div">) {
           <CardTitle className="text-xl">Enter OTP</CardTitle>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="grid gap-6">
-              <InputOTP containerClassName="justify-center" maxLength={6} pattern="^\d+$">
+              <InputOTP 
+                containerClassName="justify-center" 
+                maxLength={6} 
+                pattern="^\d+$"
+                value={otp}
+                onChange={(value) => setOtp(value)}
+              >
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
                   <InputOTPSlot index={1} />
@@ -37,7 +53,7 @@ export function OTPForm({ className, ...props }: React.ComponentProps<"div">) {
                   <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Next
               </Button>
             </div>

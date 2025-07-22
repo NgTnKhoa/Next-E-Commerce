@@ -1,5 +1,5 @@
 import React from "react";
-import { LogInIcon, MoonIcon, ShoppingBasketIcon, SunIcon } from "lucide-react";
+import { LogInIcon, ShoppingBasketIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ThemeToggle } from "../theme-toggle";

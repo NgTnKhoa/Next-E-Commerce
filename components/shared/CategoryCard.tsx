@@ -1,10 +1,3 @@
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
 import { Category } from "@/models/category.model";
 import Image from "next/image";
 import Link from "next/link";

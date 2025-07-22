@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import MockData from "@/data/mockData";
 import { Category } from "@/models/category.model";
 import { Product } from "@/models/product.model";
-import React, { use, useEffect } from "react";
+import React from "react";
 
 const Home = () => {
   const banners = [

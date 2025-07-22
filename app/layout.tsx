@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
-const roboto = Roboto({ subsets: ["vietnamese"], weight: ["100", "300"] });
+// const roboto = Roboto({ subsets: ["vietnamese"], weight: ["100", "300"] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

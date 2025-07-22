@@ -1,4 +1,3 @@
-import { LoginForm } from "@/components/login-form";
 import { ResetPasswordForm } from "@/components/reset-password-form";
 import { GalleryVerticalEnd } from "lucide-react";
 import Link from "next/link";

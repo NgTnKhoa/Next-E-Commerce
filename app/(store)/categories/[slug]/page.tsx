@@ -9,11 +9,11 @@ import Filters from "@/components/shared/Filters";
 import MockData from "@/data/mockData";
 
 interface CategoryDetailsProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-const CategoryDetails = ({ params }: CategoryDetailsProps) => {
-  const { slug } = params;
+const CategoryDetails = async ({ params }: CategoryDetailsProps) => {
+  const { slug } = await params;
   const categories: Category[] = MockData.categories;
   const category = categories.find((cat) => cat.slug === slug);
   const products: Product[] = category

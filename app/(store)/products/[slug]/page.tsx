@@ -16,11 +16,11 @@ import RelatedProducts from "@/components/shared/RelatedProducts";
 import Link from "next/link";
 
 interface ProductDetailsProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-const ProductDetails = ({ params }: ProductDetailsProps) => {
-  const { slug } = params;
+const ProductDetails = async ({ params }: ProductDetailsProps) => {
+  const { slug } = await params;
 
   const product = MockData.products.find((p: Product) => p.slug === slug);
 

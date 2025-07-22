@@ -75,7 +75,7 @@ const Cart = () => {
   const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(null);
 
   const selectedItems = cartItems.filter((item) => item.selected);
-  
+
   const allSelected =
     cartItems.length > 0 && cartItems.every((item) => item.selected);
   const someSelected = cartItems.some((item) => item.selected);
@@ -142,44 +142,6 @@ const Cart = () => {
     }
   };
 
-  if (cartItems.length === 0) {
-    return (
-      <div>
-        <div className="mb-6">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">
-                  <Home className="h-4 w-4 mr-1" />
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Shopping Cart</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-
-        <div className="text-center py-16">
-          <ShoppingBag className="h-24 w-24 mx-auto text-gray-300 mb-6" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Your cart is empty
-          </h2>
-          <p className="text-gray-600 mb-8">
-            Looks like you haven't added any items to your cart yet.
-          </p>
-          <Button asChild size="lg">
-            <Link href="/">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Continue Shopping
-            </Link>
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div>
       <Breadcrumb className="mb-2">
@@ -195,75 +157,94 @@ const Cart = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-
-      <div className="mb-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold mb-2">Shopping Cart</h1>
-            <p className="text-gray-500">
-              {cartItems.length} item{cartItems.length !== 1 ? "s" : ""} in your
-              cart
-            </p>
-          </div>
-          {cartItems.length > 0 && (
-            <div className="flex items-center gap-4">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="select-all"
-                  checked={allSelected}
-                  onCheckedChange={toggleSelectAll}
-                />
-                <Label htmlFor="select-all" className="text-sm font-medium">
-                  Select All ({cartItems.length})
-                </Label>
+      {cartItems.length === 0 ? (
+        <div className="text-center py-16">
+          <ShoppingBag className="h-24 w-24 mx-auto text-gray-600 mb-6" />
+          <h2 className="text-2xl font-bold mb-4">
+            Your cart is empty
+          </h2>
+          <p className="text-gray-600 mb-8">
+            Looks like you haven't added any items to your cart yet.
+          </p>
+          <Button asChild size="lg">
+            <Link href="/">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Continue Shopping
+            </Link>
+          </Button>
+        </div>
+      ) : (
+        <div>
+          <div className="mb-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold mb-2">Shopping Cart</h1>
+                <p className="text-gray-500">
+                  {cartItems.length} item{cartItems.length !== 1 ? "s" : ""} in
+                  your cart
+                </p>
               </div>
-              {someSelected && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={removeSelectedItems}
-                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                >
-                  <Trash2 className="h-4 w-4 mr-2" />
-                  Remove Selected
-                </Button>
+              {cartItems.length > 0 && (
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id="select-all"
+                      checked={allSelected}
+                      onCheckedChange={toggleSelectAll}
+                    />
+                    <Label htmlFor="select-all" className="text-sm font-medium">
+                      Select All ({cartItems.length})
+                    </Label>
+                  </div>
+                  {someSelected && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={removeSelectedItems}
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                    >
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      Remove Selected
+                    </Button>
+                  )}
+                </div>
               )}
             </div>
-          )}
-        </div>
-      </div>
+          </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-4">
-          {cartItems.map((item) => (
-            <CartItemCard
-              key={item.id}
-              item={item}
-              updateQuantity={updateQuantity}
-              updateQuantityDirect={updateQuantityDirect}
-              toggleItemSelection={toggleItemSelection}
-              removeItem={removeItem}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-4">
+              {cartItems.map((item) => (
+                <CartItemCard
+                  key={item.id}
+                  item={item}
+                  updateQuantity={updateQuantity}
+                  updateQuantityDirect={updateQuantityDirect}
+                  toggleItemSelection={toggleItemSelection}
+                  removeItem={removeItem}
+                />
+              ))}
+
+              <div className="pt-4">
+                <Button variant="outline" asChild>
+                  <Link href="/">
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Continue Shopping
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            <OrderInformation
+              selectedItems={selectedItems}
+              appliedPromo={appliedPromo}
+              setPromoCode={setPromoCode}
+              promoCode={promoCode}
+              applyPromoCode={applyPromoCode}
             />
-          ))}
-
-          <div className="pt-4">
-            <Button variant="outline" asChild>
-              <Link href="/">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Continue Shopping
-              </Link>
-            </Button>
           </div>
         </div>
-
-        <OrderInformation
-          selectedItems={selectedItems}
-          appliedPromo={appliedPromo}
-          setPromoCode={setPromoCode}
-          promoCode={promoCode}
-          applyPromoCode={applyPromoCode}
-        />
-      </div>
+      )}
     </div>
   );
 };

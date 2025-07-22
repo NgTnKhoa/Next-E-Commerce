@@ -104,18 +104,18 @@ function Trademark() {
 function Socials() {
   return (
     <div className="mb-6 flex justify-center space-x-6 text-muted-foreground">
-      <a href="#" rel="noreferrer">
+      <Link href="#" rel="noreferrer">
         <InstagramIcon className="h-4" />
         <span className="sr-only">Instagram page</span>
-      </a>
-      <a href="#" rel="noreferrer">
+      </Link>
+      <Link href="#" rel="noreferrer">
         <TwitterIcon className="h-4" />
         <span className="sr-only">Twitter page</span>
-      </a>
-      <a href="#" rel="noreferrer">
+      </Link>
+      <Link href="#" rel="noreferrer">
         <GithubIcon className="h-4" />
         <span className="sr-only">GitHub account</span>
-      </a>
+      </Link>
     </div>
   );
 }

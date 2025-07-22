@@ -8,7 +8,7 @@ import { CartItem } from "@/models/cartItem.model";
 
 interface OrderInformationProps {
   selectedItems: CartItem[];
-  appliedPromo: any;
+  appliedPromo: { code: string; discount: number } | null;
   setPromoCode: React.Dispatch<React.SetStateAction<string>>;
   promoCode: string;
   applyPromoCode: () => void;
@@ -58,7 +58,7 @@ const OrderInformation = ({
           {appliedPromo && (
             <div className="flex items-center gap-2 text-green-600 text-sm">
               <Tag className="h-4 w-4" />
-              <span>Code "{appliedPromo.code}" applied!</span>
+              <span>{`Code "${appliedPromo.code}" applied!`}</span>
             </div>
           )}
         </CardContent>

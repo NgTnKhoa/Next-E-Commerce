@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageCircle, Star, ThumbsUp, User } from "lucide-react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { Review } from "@/models/review.model";
 
 interface ProductReviewProps {
   product: Product;
@@ -13,7 +14,7 @@ interface ProductReviewProps {
 
 const ProductReview = ({ product }: ProductReviewProps) => {
   const [showReviewForm, setShowReviewForm] = useState(false);
-  const [userReviews, setUserReviews] = useState<any[]>([]);
+  const [userReviews] = useState<Review[]>([]);
   const allReviews = [
     ...userReviews,
     {
@@ -88,7 +89,7 @@ const ProductReview = ({ product }: ProductReviewProps) => {
           </div>
 
           <div className="space-y-4">
-            {allReviews.map((review: any) => (
+            {allReviews.map((review: Review) => (
               <div key={review.id} className="border-b pb-4 last:border-b-0">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">

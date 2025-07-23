@@ -6,7 +6,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { CartItem } from "@/models/cartItem.model";
 
-interface OrderInformationProps {
+interface OrderContentProps {
   selectedItems: CartItem[];
   appliedPromo: { code: string; discount: number } | null;
   setPromoCode: React.Dispatch<React.SetStateAction<string>>;
@@ -14,13 +14,13 @@ interface OrderInformationProps {
   applyPromoCode: () => void;
 }
 
-const OrderInformation = ({
+const OrderContent = ({
   selectedItems,
   appliedPromo,
   setPromoCode,
   promoCode,
   applyPromoCode,
-}: OrderInformationProps) => {
+}: OrderContentProps) => {
   const subtotal = selectedItems.reduce(
     (sum, item) => sum + item.discountedPrice * item.quantity,
     0
@@ -170,4 +170,4 @@ const OrderInformation = ({
   );
 };
 
-export default OrderInformation;
+export default OrderContent;

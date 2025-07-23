@@ -9,7 +9,7 @@ import { Input } from "../ui/input";
 import { CartItem } from "@/models/cartItem.model";
 
 interface CartItemCardProps {
-  item: CartItem;
+  cartItem: CartItem;
   updateQuantity: (id: number, change: number) => void;
   updateQuantityDirect: (id: number, quantity: number) => void;
   toggleItemSelection: (id: number) => void;
@@ -17,7 +17,7 @@ interface CartItemCardProps {
 }
 
 const CartItemCard = ({
-  item,
+  cartItem: item,
   updateQuantity,
   updateQuantityDirect,
   toggleItemSelection,
@@ -32,7 +32,6 @@ const CartItemCard = ({
     >
       <CardContent className="p-6">
         <div className="flex gap-4 min-h-[140px]">
-          {/* Selection Checkbox */}
           <div className="flex items-center justify-center">
             <Checkbox
               checked={item.selected}
@@ -42,7 +41,6 @@ const CartItemCard = ({
             />
           </div>
 
-          {/* Product Image */}
           <div className="w-32 relative rounded-lg overflow-hidden flex-shrink-0 self-stretch">
             <Image
               src={item.image}
@@ -52,7 +50,6 @@ const CartItemCard = ({
             />
           </div>
 
-          {/* Product Details */}
           <div className="flex-1 min-w-0">
             <div className="flex justify-between items-start mb-2">
               <div>
@@ -70,7 +67,6 @@ const CartItemCard = ({
               </Button>
             </div>
 
-            {/* Stock Status */}
             <div className="mb-3">
               {item.inStock ? (
                 <Badge variant="default" className="text-xs">
@@ -83,7 +79,6 @@ const CartItemCard = ({
               )}
             </div>
 
-            {/* Price and Quantity */}
             <div className="flex items-center justify-between">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -106,7 +101,6 @@ const CartItemCard = ({
                 </p>
               </div>
 
-              {/* Quantity Controls */}
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"

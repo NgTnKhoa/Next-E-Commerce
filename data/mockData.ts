@@ -1,3 +1,4 @@
+import { CartItem } from "@/models/cartItem.model";
 import { Category } from "@/models/category.model";
 import { Product } from "@/models/product.model";
 
@@ -1647,6 +1648,51 @@ class MockData {
   static featuredProducts: Product[] = this.products.filter(
     (product) => product.featured
   );
+
+  static cartItems: CartItem[] = [
+    {
+      id: 1,
+      name: "MacBook Pro 16",
+      brand: "Apple",
+      price: 2499.0,
+      discountedPrice: 2249.1,
+      discount: 10,
+      quantity: 1,
+      image: "/product/laptop/apple-macbook-pro/apple-macbook-pro-1.jpg",
+      color: "Space Gray",
+      inStock: true,
+      maxQuantity: 5,
+      selected: true,
+    },
+    {
+      id: 2,
+      name: "Wireless Bluetooth Headphones",
+      brand: "Sony",
+      price: 299.99,
+      discountedPrice: 249.99,
+      discount: 17,
+      quantity: 2,
+      image: "/product/accessory/bluetooth-headphones/bluetooth-headphones-1.jpg",
+      color: "Black",
+      inStock: true,
+      maxQuantity: 10,
+      selected: true,
+    },
+    {
+      id: 3,
+      name: "Gaming Mouse Pro",
+      brand: "Logitech",
+      price: 89.99,
+      discountedPrice: 79.99,
+      discount: 11,
+      quantity: 1,
+      image: "/product/accessory/wireless-mouse/wireless-mouse-1.jpg",
+      color: "RGB Black",
+      inStock: false,
+      maxQuantity: 0,
+      selected: false,
+    },
+  ];
 }
 
 export default MockData;

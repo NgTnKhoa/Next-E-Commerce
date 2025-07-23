@@ -10,7 +10,7 @@ import {
 import { Product } from "@/models/product.model";
 import MockData from "@/data/mockData";
 import { Home } from "lucide-react";
-import ProductInformation from "@/components/shared/ProductInformation";
+import ProductContent from "@/components/shared/ProductContent";
 import ProductReview from "@/components/shared/ProductReview";
 import RelatedProducts from "@/components/shared/RelatedProducts";
 import Link from "next/link";
@@ -56,7 +56,7 @@ const ProductDetails = async ({ params }: ProductDetailsProps) => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <ProductInformation product={product} />
+      <ProductContent product={product} />
 
       <div className="mt-4 space-y-4">
         <Card>

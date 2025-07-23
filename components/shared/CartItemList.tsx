@@ -24,7 +24,8 @@ const CartItemList = ({
   toggleSelectAll,
   removeSelectedItems,
 }: CartItemListProps) => {
-  const allSelected = cartItems.length > 0 && cartItems.every((item) => item.selected);
+  const allSelected =
+    cartItems.length > 0 && cartItems.every((item) => item.selected);
   const someSelected = cartItems.some((item) => item.selected);
 
   return (
@@ -61,16 +62,18 @@ const CartItemList = ({
           )}
         </div>
       </div>
-      {cartItems.map((item) => (
-        <CartItemCard
-          key={item.id}
-          cartItem={item}
-          updateQuantity={updateQuantity}
-          updateQuantityDirect={updateQuantityDirect}
-          toggleItemSelection={toggleItemSelection}
-          removeItem={removeItem}
-        />
-      ))}
+      <div className="mt-4 space-y-4">
+        {cartItems.map((item) => (
+          <CartItemCard
+            key={item.id}
+            cartItem={item}
+            updateQuantity={updateQuantity}
+            updateQuantityDirect={updateQuantityDirect}
+            toggleItemSelection={toggleItemSelection}
+            removeItem={removeItem}
+          />
+        ))}
+      </div>
     </div>
   );
 };

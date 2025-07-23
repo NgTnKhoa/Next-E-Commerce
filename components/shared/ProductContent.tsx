@@ -31,13 +31,13 @@ import { Separator } from "../ui/separator";
 import { useCart } from "@/hooks/use-cart";
 import { toast } from "sonner";
 
-interface ProductInformationProps {
+interface ProductContentProps {
   product: Product;
 }
 
-const ProductInformation = ({ product }: ProductInformationProps) => {
+const ProductContent = ({ product }: ProductContentProps) => {
   const [quantity, setQuantity] = useState(1);
-  const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "");
+  const [selectedColor] = useState(product.colors?.[0] || "");
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { addToCart } = useCart();
@@ -303,4 +303,4 @@ const ProductInformation = ({ product }: ProductInformationProps) => {
   );
 };
 
-export default ProductInformation;
+export default ProductContent;

@@ -28,6 +28,8 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Card, CardContent } from "../ui/card";
 import { Separator } from "../ui/separator";
+import { useCart } from "@/hooks/use-cart";
+import { toast } from "sonner";
 
 interface ProductInformationProps {
   product: Product;
@@ -35,14 +37,34 @@ interface ProductInformationProps {
 
 const ProductInformation = ({ product }: ProductInformationProps) => {
   const [quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "");
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { addToCart } = useCart();
 
   const discountedPrice =
     product.price - (product.price * product.discount) / 100;
 
   const handleQuantityChange = (change: number) => {
     setQuantity((prev) => Math.max(1, prev + change));
+  };
+
+  const handleAddToCart = () => {
+    const cartItem = {
+      name: product.name,
+      brand: product.brand,
+      price: product.price,
+      discountedPrice: discountedPrice,
+      discount: product.discount,
+      quantity: quantity,
+      image: product.images[0],
+      color: selectedColor,
+      inStock: product.status === "AVAILABLE",
+      maxQuantity: product.stock,
+    };
+
+    addToCart(cartItem);
+    toast.success(`${product.name} added to cart!`);
   };
 
   const handleThumbnailClick = (index: number) => {
@@ -220,6 +242,7 @@ const ProductInformation = ({ product }: ProductInformationProps) => {
               size="default"
               className="w-full h-10 text-sm font-medium"
               disabled={product.status !== "AVAILABLE"}
+              onClick={handleAddToCart}
             >
               <ShoppingCart className="h-4 w-4 mr-2" />
               Add to Cart

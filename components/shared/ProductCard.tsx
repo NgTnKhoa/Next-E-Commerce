@@ -17,43 +17,44 @@ interface ProductCardProps {
 export const ProductCard = ({ product, isFeatured }: ProductCardProps) => {
   return (
     <Link href={`/products/${product.slug}`}>
-      <Card className="h-full pt-0 pb-2 gap-0">
-        <CardHeader className="p-0 relative h-50 w-full">
+      <Card className="h-full pt-0 pb-2 gap-0 w-full max-w-sm mx-auto">
+        <CardHeader className="p-0 relative aspect-square w-full">
           <Image
-            className="rounded-t-lg object-contain"
+            className="rounded-t-lg object-cover"
             src={product.images[0]}
             alt={product.name}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           {product.discount > 0 && (
-            <div className="absolute bottom-2 left-4 flex flex-wrap gap-1 z-10">
+            <div className="absolute top-2 left-2 flex flex-wrap gap-1 z-10">
               <Badge
                 variant="destructive"
-                className="text-xs px-1 shadow-sm rounded-full"
+                className="text-xs px-2 py-1 shadow-sm rounded-full"
               >
                 -{product.discount}%
               </Badge>
             </div>
           )}
         </CardHeader>
-        <CardContent className="px-4">
+        <CardContent className="px-3 py-2">
           {isFeatured &&
             product.categoryNames.map((categoryName) => (
-              <div key={categoryName} className="pt-2">
-                <Badge variant="outline" className="text-neutral-500 mr-1">
+              <div key={categoryName} className="pb-1">
+                <Badge variant="outline" className="text-xs text-neutral-500 mr-1">
                   {categoryName}
                 </Badge>
               </div>
             ))}
           <div className="flex flex-col items-start gap-1 pt-2">
-            <h2 className="text-md font-semibold">{product.name}</h2>
-            <p className="text-xs text-neutral-500 line-clamp-2 wrap-anywhere">
+            <h2 className="text-md font-semibold line-clamp-1">{product.name}</h2>
+            <p className="text-xs text-neutral-500 line-clamp-1 sm:line-clamp-2 wrap-anywhere">
               {product.description}
             </p>
           </div>
         </CardContent>
         <CardFooter className="mt-auto px-4">
-          <div className="flex items-start py-1 gap-2">
+          <div className="flex items-start py-0 sm:py-1 gap-2">
             <div>
               <span className="text-md font-semibold">
                 ${product.price.toFixed(2)}

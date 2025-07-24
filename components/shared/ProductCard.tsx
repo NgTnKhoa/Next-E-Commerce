@@ -46,7 +46,7 @@ export const ProductCard = ({ product, isFeatured }: ProductCardProps) => {
                 </Badge>
               </div>
             ))}
-          <div className="flex flex-col items-start gap-1 pt-2">
+          <div className="flex flex-col items-start gap-1">
             <h2 className="text-md font-semibold line-clamp-1">{product.name}</h2>
             <p className="text-xs text-neutral-500 line-clamp-1 sm:line-clamp-2 wrap-anywhere">
               {product.description}

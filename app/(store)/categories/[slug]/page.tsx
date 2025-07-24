@@ -41,7 +41,7 @@ const CategoryDetails = async ({ params }: CategoryDetailsProps) => {
             <CategoryList categories={categories} slug={slug} />
             <Filters colors={colors} brands={brands} />
           </aside>
-          <main className="flex-1 min-w-0 p-4">
+          <main className="flex-1 min-w-0">
             {products.length > 0 ? (
               <ProductGrid
                 products={products.filter((product) =>

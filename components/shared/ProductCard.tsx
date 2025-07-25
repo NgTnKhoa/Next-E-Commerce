@@ -26,46 +26,49 @@ export const ProductCard = ({ product, isFeatured }: ProductCardProps) => {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          {product.discount > 0 && (
-            <div className="absolute top-2 left-2 flex flex-wrap gap-1 z-10">
+        </CardHeader>
+        <CardContent className="px-4 py-2">
+          {isFeatured &&
+            product.categoryNames.map((categoryName) => (
+              <div key={categoryName} className="pb-1">
+                <Badge
+                  variant="outline"
+                  className="text-xs text-neutral-500 mr-1"
+                >
+                  {categoryName}
+                </Badge>
+              </div>
+            ))}
+          <div className="flex flex-col items-start gap-1">
+            <h2 className="text-md font-semibold line-clamp-1">
+              {product.name}
+            </h2>
+            {/* <div className="flex items-center gap-1">
+              <Badge variant="secondary" className="text-xs">
+                {product.brand}
+              </Badge>
+            </div> */}
+          </div>
+        </CardContent>
+        <CardFooter className="px-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center py-0 sm:py-1 gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-md font-semibold">
+              ${product.price.toFixed(2)}
+              </span>
+              {product.discount > 0 && (
+                <span className="text-xs font-normal text-neutral-400 line-through">
+                  ${(product.price * (1 - product.discount / 100)).toFixed(2)}
+                </span>
+              )}
+            </div>
+            {product.discount > 0 && (
               <Badge
                 variant="destructive"
                 className="text-xs px-2 py-1 shadow-sm rounded-full"
               >
                 -{product.discount}%
               </Badge>
-            </div>
-          )}
-        </CardHeader>
-        <CardContent className="px-3 py-2">
-          {isFeatured &&
-            product.categoryNames.map((categoryName) => (
-              <div key={categoryName} className="pb-1">
-                <Badge variant="outline" className="text-xs text-neutral-500 mr-1">
-                  {categoryName}
-                </Badge>
-              </div>
-            ))}
-          <div className="flex flex-col items-start gap-1">
-            <h2 className="text-md font-semibold line-clamp-1">{product.name}</h2>
-            <p className="text-xs text-neutral-500 line-clamp-1 sm:line-clamp-2 wrap-anywhere">
-              {product.description}
-            </p>
-          </div>
-        </CardContent>
-        <CardFooter className="mt-auto px-4">
-          <div className="flex items-start py-0 sm:py-1 gap-2">
-            <div>
-              <span className="text-md font-semibold">
-                ${product.price.toFixed(2)}
-              </span>
-            </div>
-            {product.discount > 0 && (
-              <div>
-                <span className="text-xs font-normal text-neutral-400 line-through">
-                  ${(product.price * (1 - product.discount / 100)).toFixed(2)}
-                </span>
-              </div>
             )}
           </div>
         </CardFooter>

@@ -25,7 +25,7 @@ export default function Carousel({ images }: { images: string[] }) {
   }, [emblaApi]);
 
   return (
-    <>
+    <div>
       <div className="overflow-hidden rounded-lg" ref={emblaRef}>
         <div className="flex">
           {images.map((src, i) => (
@@ -36,7 +36,7 @@ export default function Carousel({ images }: { images: string[] }) {
         </div>
       </div>
       <Dots itemsLength={images.length} selectedIndex={selectedIndex} />
-    </>
+    </div>
   );
 }
 

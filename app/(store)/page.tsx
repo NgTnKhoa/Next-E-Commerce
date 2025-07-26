@@ -30,15 +30,15 @@ const Home = () => {
   const products: Product[] = MockData.featuredProducts;
 
   return (
-    <div>
+    <div className="px-6">
       <Slider images={banners.map((obj) => obj.image)} />
-      <Separator className="my-8" />
+      <Separator className="my-6" />
       <Heading
         title="Categories"
         description="Explore our categories to find what you need."
       />
       <CategoryGrid categories={categories} />
-      <Separator className="my-8" />
+      <Separator className="my-6" />
       <Heading
         title="Products"
         description="Below is a list of products we have available for you."

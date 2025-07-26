@@ -52,7 +52,7 @@ const Footer = () => {
   return (
     <footer className="w-full">
       <Separator className="my-12" />
-      <div className="flex justify-between px-[1.4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] 2xl:px-[12rem]">
+      <div className="flex justify-between max-w-screen-2xl mx-auto px-6">
         <Trademark />
         <Links />
       </div>

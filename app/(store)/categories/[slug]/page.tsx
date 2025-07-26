@@ -35,7 +35,7 @@ const CategoryDetails = async ({ params }: CategoryDetailsProps) => {
   ];
 
   return (
-    <div>
+    <div className="px-6">
       <div className="flex items-end justify-between mb-4">
         <Heading
           className="my-0"
@@ -64,8 +64,8 @@ const CategoryDetails = async ({ params }: CategoryDetailsProps) => {
         </DropdownMenu>
       </div>
       <div className="flex flex-col min-h-screen">
-        <div className="flex flex-1 overflow-hidden">
-          <aside className="hidden lg:block w-[12vw] p-4">
+        <div className="flex flex-1 overflow-hidden gap-6">
+          <aside className="hidden lg:block w-[10vw]">
             <CategoryList categories={categories} slug={slug} />
             <Filters colors={colors} brands={brands} />
           </aside>

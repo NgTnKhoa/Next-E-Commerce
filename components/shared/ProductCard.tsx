@@ -51,14 +51,14 @@ export const ProductCard = ({ product, isFeatured }: ProductCardProps) => {
           </div>
         </CardContent>
         <CardFooter className="px-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center py-0 sm:py-1 gap-2">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center py-0 sm:py-1 gap-2">
             <div className="flex items-center gap-2">
               <span className="text-md font-semibold">
-              ${product.price.toFixed(2)}
+                ${(product.price * (1 - product.discount / 100)).toFixed(2)}
               </span>
               {product.discount > 0 && (
                 <span className="text-xs font-normal text-neutral-400 line-through">
-                  ${(product.price * (1 - product.discount / 100)).toFixed(2)}
+                  ${product.price.toFixed(2)}
                 </span>
               )}
             </div>

@@ -29,7 +29,7 @@ const ProductDetails = async ({ params }: ProductDetailsProps) => {
   }
 
   return (
-    <div>
+    <div className="px-6">
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>

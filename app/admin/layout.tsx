@@ -54,6 +54,8 @@ interface AdminLayoutProps {
 }
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
+  const pathname = usePathname();
+  
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -67,7 +69,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               {sidebarNavItems.map((item) => {
-                const pathname = usePathname();
                 const isActive = pathname === item.href;
                 
                 return (
@@ -111,7 +112,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                   <span className="sr-only">Admin Panel</span>
                 </Link>
                 {sidebarNavItems.map((item) => {
-                  const pathname = usePathname();
                   const isActive = pathname === item.href;
                   
                   return (
@@ -133,7 +133,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           </Sheet>
           <div className="w-full flex-1">
             <h1 className="text-lg font-semibold md:text-2xl">
-              {sidebarNavItems.find(item => usePathname() === item.href)?.title || "Dashboard"}
+              {sidebarNavItems.find(item => pathname === item.href)?.title || "Dashboard"}
             </h1>
           </div>
         </header>

@@ -182,7 +182,7 @@ const Categories = () => {
     setIsEditDialogOpen(true);
   };
 
-  const CategoryForm = ({ isEdit = false }: { isEdit?: boolean }) => (
+  const CategoryForm = () => (
     <div className="grid gap-4 py-4">
       <div className="grid gap-2">
         <Label htmlFor="name">Category Name *</Label>
@@ -411,7 +411,7 @@ const Categories = () => {
               Update the category information below.
             </DialogDescription>
           </DialogHeader>
-          <CategoryForm isEdit />
+          <CategoryForm />
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
               Cancel

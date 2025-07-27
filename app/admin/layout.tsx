@@ -49,44 +49,6 @@ const sidebarNavItems = [
   },
 ];
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-function Sidebar({ className }: SidebarProps) {
-  const pathname = usePathname();
-
-  return (
-    <div className={cn("pb-12", className)}>
-      <div className="space-y-4 py-4">
-        <div className="px-3 py-2">
-          <div className="flex items-center mb-2">
-            <Store className="mr-2 h-6 w-6" />
-            <h2 className="text-lg font-semibold tracking-tight">
-              Admin Panel
-            </h2>
-          </div>
-          <div className="space-y-1">
-            {sidebarNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors",
-                  pathname === item.href
-                    ? "bg-accent text-accent-foreground"
-                    : "transparent"
-                )}
-              >
-                <item.icon className="mr-2 h-4 w-4" />
-                {item.title}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 interface AdminLayoutProps {
   children: React.ReactNode;
 }

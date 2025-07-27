@@ -338,7 +338,7 @@ const Users = () => {
 
   const stats = getUserStats();
 
-  const UserForm = ({ isEdit = false }: { isEdit?: boolean }) => (
+  const UserForm = ({ }: { isEdit?: boolean }) => (
     <div className="grid gap-4 py-4">
       <div className="grid gap-2">
         <Label htmlFor="name">Full Name *</Label>

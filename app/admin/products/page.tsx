@@ -44,6 +44,7 @@ import {
 import MockData from "@/data/mockData";
 import { Product } from "@/models/product.model";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -276,7 +277,7 @@ const Products = () => {
       {formData.images[0] && (
         <div className="grid gap-2">
           <Label>Preview</Label>
-          <img
+          <Image
             src={formData.images[0]}
             alt="Product preview"
             className="h-20 w-20 object-cover rounded border"
@@ -363,7 +364,7 @@ const Products = () => {
                   <TableRow key={product.id}>
                     <TableCell>
                       <div className="flex items-center space-x-3">
-                        <img
+                        <Image
                           src={product.images[0] || "/placeholder-product.jpg"}
                           alt={product.name}
                           className="h-10 w-10 rounded-lg object-cover border"

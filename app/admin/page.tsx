@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,16 +18,14 @@ import {
   Package,
   Users,
   ShoppingCart,
-  CreditCard,
-  Eye,
   ArrowUpRight,
-  ArrowDownRight,
   Calendar,
   Clock,
   CheckCircle,
   AlertTriangle
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Mock data for dashboard
 const dashboardStats = {
@@ -176,7 +173,7 @@ const Dashboard = () => {
     value: string | number;
     change: number;
     trend: "up" | "down";
-    icon: any;
+    icon: React.ElementType;
     href: string;
   }) => (
     <Card>
@@ -341,7 +338,7 @@ const Dashboard = () => {
                   <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted text-sm font-medium">
                     {index + 1}
                   </div>
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
                     className="w-10 h-10 rounded-lg object-cover border"

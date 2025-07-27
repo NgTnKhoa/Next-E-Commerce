@@ -44,6 +44,7 @@ import {
 import MockData from "@/data/mockData";
 import { Category } from "@/models/category.model";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const Categories = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -235,7 +236,7 @@ const Categories = () => {
       {formData.image && (
         <div className="grid gap-2">
           <Label>Preview</Label>
-          <img
+          <Image
             src={formData.image}
             alt="Category preview"
             className="h-20 w-20 object-cover rounded border"
@@ -320,7 +321,7 @@ const Categories = () => {
                   <TableRow key={category.id}>
                     <TableCell>
                       <div className="flex items-center space-x-3">
-                        <img
+                        <Image
                           src={category.image}
                           alt={category.name}
                           className="h-10 w-10 rounded-lg object-cover border"

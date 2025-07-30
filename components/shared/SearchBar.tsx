@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
-const HomeSearchBar = () => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
@@ -38,4 +38,4 @@ const HomeSearchBar = () => {
   );
 };
 
-export default HomeSearchBar;
+export default SearchBar;

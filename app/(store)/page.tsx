@@ -2,7 +2,7 @@ import { CategoryGrid } from "@/components/shared/CategoryGrid";
 import Heading from "@/components/shared/Heading";
 import { ProductGrid } from "@/components/shared/ProductGrid";
 import { ProductSkeletonGrid } from "@/components/shared/ProductSkeletonGrid";
-import HomeSearchBar from "@/components/shared/HomeSearchBar";
+import SearchBar from "@/components/shared/SearchBar";
 import Slider from "@/components/shared/Slider";
 import { Separator } from "@/components/ui/separator";
 import MockData from "@/data/mockData";
@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <div className="px-6">
-      <HomeSearchBar />
+      <SearchBar />
 
       <Slider images={banners.map((obj) => obj.image)} />
       <Separator className="my-6" />

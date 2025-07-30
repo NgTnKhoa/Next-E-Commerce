@@ -9,13 +9,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
 interface SearchPageProps {
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }
 
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
   const allCategories: Category[] = MockData.categories;
   const allProducts: Product[] = MockData.products;
-  const initialQuery = searchParams.q || "";
+  const resolvedSearchParams = await searchParams;
+  const initialQuery = resolvedSearchParams.q || "";
 
   return (
     <div className="px-6">

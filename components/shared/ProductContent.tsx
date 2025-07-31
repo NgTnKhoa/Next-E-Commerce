@@ -37,7 +37,7 @@ interface ProductContentProps {
 
 const ProductContent = ({ product }: ProductContentProps) => {
   const [quantity, setQuantity] = useState(1);
-  const [selectedColor] = useState(product.colors?.[0] || "");
+  const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "");
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { addToCart } = useCart();
@@ -189,8 +189,13 @@ const ProductContent = ({ product }: ProductContentProps) => {
                 {product.colors.map((color, index) => (
                   <Badge
                     key={index}
-                    variant="outline"
-                    className="cursor-pointer hover:bg-accent px-2 py-1 text-sm"
+                    variant={selectedColor === color ? "default" : "outline"}
+                    className={`cursor-pointer hover:bg-accent px-2 py-1 text-sm transition-colors ${
+                      selectedColor === color 
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                        : "hover:bg-accent"
+                    }`}
+                    onClick={() => setSelectedColor(color)}
                   >
                     {color}
                   </Badge>

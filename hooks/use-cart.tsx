@@ -90,6 +90,15 @@ export const useCart = () => {
     );
   };
 
+  // Update color
+  const updateColor = (id: number, newColor: string) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, color: newColor } : item
+      )
+    );
+  };
+
   // Toggle item selection
   const toggleItemSelection = (id: number) => {
     setCartItems((prev) =>
@@ -143,6 +152,7 @@ export const useCart = () => {
     removeItem,
     updateQuantity,
     updateQuantityDirect,
+    updateColor,
     toggleItemSelection,
     toggleSelectAll,
     removeSelectedItems,

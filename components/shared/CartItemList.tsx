@@ -13,6 +13,7 @@ interface CartItemListProps {
   removeItem: (id: number) => void;
   toggleSelectAll: () => void;
   removeSelectedItems: () => void;
+  updateColor?: (id: number, color: string) => void;
 }
 
 const CartItemList = ({
@@ -23,6 +24,7 @@ const CartItemList = ({
   removeItem,
   toggleSelectAll,
   removeSelectedItems,
+  updateColor,
 }: CartItemListProps) => {
   const allSelected =
     cartItems.length > 0 && cartItems.every((item) => item.selected);
@@ -71,6 +73,7 @@ const CartItemList = ({
             updateQuantityDirect={updateQuantityDirect}
             toggleItemSelection={toggleItemSelection}
             removeItem={removeItem}
+            updateColor={updateColor}
           />
         ))}
       </div>

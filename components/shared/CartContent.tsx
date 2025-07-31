@@ -18,6 +18,7 @@ const CartContent = () => {
     cartItems,
     updateQuantity,
     updateQuantityDirect,
+    updateColor,
     toggleItemSelection,
     removeItem,
     toggleSelectAll,
@@ -44,6 +45,7 @@ const CartContent = () => {
           cartItems={cartItems}
           updateQuantity={updateQuantity}
           updateQuantityDirect={updateQuantityDirect}
+          updateColor={updateColor}
           toggleItemSelection={toggleItemSelection}
           removeItem={removeItem}
           toggleSelectAll={toggleSelectAll}

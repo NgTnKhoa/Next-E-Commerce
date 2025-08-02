@@ -29,7 +29,9 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
+        <head>
+          <link rel="icon" href="/logo/logo-dark.jpg" type="image/jpeg" />
+        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
